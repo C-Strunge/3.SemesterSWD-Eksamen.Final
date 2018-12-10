@@ -24,4 +24,4 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-/TheNext/src/main/resources/application.properties
+/src/main/resources/application.properties
