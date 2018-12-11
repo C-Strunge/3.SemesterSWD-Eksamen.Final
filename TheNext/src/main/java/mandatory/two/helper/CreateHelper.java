@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CreateHelper {
 
-    public static boolean checkIfEmailExists(ArrayList<User> userArrayList){
+    public static boolean checkIfEmailNotExists(ArrayList<User> userArrayList){
         if (userArrayList.size() >= 1){
             return false;
         } else {
