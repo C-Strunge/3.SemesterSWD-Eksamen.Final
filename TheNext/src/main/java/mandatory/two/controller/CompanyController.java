@@ -36,12 +36,13 @@ public class CompanyController {
     @PostMapping("/company/create")
     public String createCompany(@ModelAttribute Company company) {
         ArrayList<User> companyArrayList = (ArrayList) companyRepo.findAllByEmail(company.getEmail());
-        if (CreateHelper.checkIfEmailExists(companyArrayList)) {
+        if (CreateHelper.checkIfEmailNotExists(companyArrayList)) {
             companyRepo.save(company);
         }
         // Insert else statement that redirects to company/create
         return "redirect:/company";
     }
+
 
     @GetMapping("/company/edit/{id}")
     public String editCompany(@PathVariable Long id, Model model) {
