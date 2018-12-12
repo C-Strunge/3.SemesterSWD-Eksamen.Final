@@ -15,6 +15,7 @@ public class Company extends User {
     @OneToMany
     private List<Offer> offerList;
     private String companyName;
+    private Boolean isActive;
     private Integer cvr;
     private Long accountNumber;
     private Integer registrationNumber;
@@ -71,4 +72,8 @@ public class Company extends User {
     public void setCategoryList(List<Category> categoryList) {
         this.categoryList = categoryList;
     }
+
+    public Boolean getActive() { return isActive; }
+
+    public void setActive(Boolean active) { isActive = active; }
 }

@@ -40,7 +40,7 @@ public class CustomerController {
     @PostMapping("/customer/create")
     public String createCustomer(@ModelAttribute Customer customer){
         ArrayList<User> customerArrayList = (ArrayList) customerRepo.findAllByEmail(customer.getEmail());
-        if (CreateHelper.checkIfEmailExists(customerArrayList)){
+        if (CreateHelper.checkIfEmailNotExists(customerArrayList)){
             customerRepo.save(customer);
         }
         // Insert else statement that redirects to company/create
