@@ -28,12 +28,12 @@
                 <div class="form-group col-md-4">
                     <label>Price pr. item</label>
                     <input th:field="${offer.price}" type="number" class="form-control" required="true"
-                           placeholder="price in DKK">
+                           placeholder="price in DKK" title="can't be negative" min="1" pattern="[0-9]">
                 </div>
                 <div class="form-group col-md-4">
                     <label>Item quantity</label>
                     <input th:field="${offer.quantity}" type="number" min="1" class="form-control" required="true"
-                           placeholder="DD/MM/YYYY" title="can't be negative">
+                           placeholder="available amount" title="can't be negative" pattern="[0-9]">
                 </div>
             </div>
             <div class="form-row">
@@ -46,6 +46,11 @@
                     <label>End date</label>
                     <input th:field="${offer.endDate}" type="date" class="form-control" required="true"
                            placeholder="DD/MM/YYYY" pattern="[0-9]{5,18}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Picture URL</label>
+                    <input th:field="${offer.pictureUrl}" type="text" class="form-control" required="true"
+                           placeholder="www.yourpicture.example">
                 </div>
             </div>
             <div class="form-row">
