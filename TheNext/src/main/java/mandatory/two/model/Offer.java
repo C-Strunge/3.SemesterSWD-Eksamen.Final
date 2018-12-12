@@ -19,6 +19,7 @@ public class Offer {
     private String endDate;
     private Integer quantity;
     private String pictureUrl;
+    private Boolean isActive;
 
     public Offer() {
     }
@@ -77,5 +78,13 @@ public class Offer {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }
