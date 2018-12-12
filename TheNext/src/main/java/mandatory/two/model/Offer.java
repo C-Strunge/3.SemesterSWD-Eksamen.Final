@@ -1,9 +1,6 @@
 package mandatory.two.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Matthias Skou 30/11/2018
@@ -18,6 +15,10 @@ public class Offer {
     private Long id;
     private String name;
     private Integer price;
+    private String startDate;
+    private String endDate;
+    private Integer quantity;
+    private String pictureUrl;
 
     public Offer() {
     }
@@ -44,5 +45,37 @@ public class Offer {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 }
