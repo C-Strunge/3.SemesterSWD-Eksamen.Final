@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -59,6 +60,14 @@ public class CompanyController {
     public String editCompany(@ModelAttribute Company company) {
         companyRepo.save(company);
         return "";
+    }
+    @GetMapping("/statistics")
+    public String offerView(Model model, HttpServletRequest request) {
+
+        Company company = CreateHelper.getCompanyFromSession(request, companyRepo);
+        model.addAttribute("company", company);
+
+        return "Company/offerStatistics";
     }
 
 }

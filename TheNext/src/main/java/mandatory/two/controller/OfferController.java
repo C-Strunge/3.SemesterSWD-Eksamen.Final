@@ -49,6 +49,7 @@ public class OfferController {
     @PostMapping("/offer/create")
     public String createOffer(@ModelAttribute Offer offer, HttpServletRequest request) {
         offer.setActive(true);
+        offer.setQuantityBought(0);
         offerRepo.save(offer);
 
         Company company = CreateHelper.getCompanyFromSession(request, companyRepo);
