@@ -4,16 +4,16 @@ package mandatory.two.controller;
  */
 
 
+import mandatory.two.model.Category;
 import mandatory.two.model.Company;
+import mandatory.two.model.Customer;
+import mandatory.two.repository.CategoryRepository;
 import mandatory.two.repository.CompanyRepository;
 import mandatory.two.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -24,7 +24,9 @@ public class AdminController {
     @Autowired
     private CompanyRepository companyRepository;
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerRepository customerRepo;
+    @Autowired
+    private CategoryRepository categoryRepo;
 
     @GetMapping("/admin/verify")
     public String verifyCompany(Model model) {
@@ -34,8 +36,8 @@ public class AdminController {
     }
 
     @GetMapping("/admin/verify/accepted/{id}")
-    public String acceptCompany(@PathVariable Long id){
-        Optional<Company> optionalCompany= companyRepository.findById(id);
+    public String acceptCompany(@PathVariable Long id) {
+        Optional<Company> optionalCompany = companyRepository.findById(id);
         Company c = optionalCompany.get();
         c.setIsActive(1);
         companyRepository.save(c);
@@ -47,4 +49,59 @@ public class AdminController {
         companyRepository.deleteById(id);
         return "redirect:/admin/verify";
     }
+
+    @GetMapping("/admin/customer/edit/{id}")
+    public String editCustomerAdmin(@PathVariable Long id, Model model) {
+        Optional<Customer> customerOptional = customerRepo.findById(id);
+        Customer customer = customerOptional.get();
+        customer.setId(id);
+        model.addAttribute("category", categoryRepo.findAll());
+        model.addAttribute("customer", customer);
+        return "Admin/editCustomerAdmin";
+    }
+
+    @PostMapping("/admin/edit/customer/")
+    public String editCustomer(@ModelAttribute Customer customer) {
+        customerRepo.save(customer);
+        return "redirect:/admin/customers/view/";
+    }
+
+    @GetMapping("/admin/customer/delete/{id}")
+    public String deleteCustomer(@PathVariable Long id) {
+        customerRepo.deleteById(id);
+        return "redirect:/admin/customers/view/";
+    }
+
+    @GetMapping("/admin/edit/company/{id}")
+    public String editCompany(@PathVariable Long id, Model model) {
+        Optional<Company> company = companyRepository.findById(id);
+        Company c = company.get();
+        c.setId(id);
+        model.addAttribute("category", categoryRepo.findAll());
+        model.addAttribute("company", c);
+        return "admin/editCompanyAdmin";
+    }
+
+    @PostMapping("/admin/edit/company/")
+    public String editCompany(@ModelAttribute Company company) {
+        companyRepository.save(company);
+        return "redirect:/admin/verify";
+    }
+
+    @GetMapping("/admin/companies/view")
+    public String viewCompanys(Model model) {
+        ArrayList<Company> companyArrayList = (ArrayList) companyRepository.findAllByIsActive(1);
+        model.addAttribute("companies", companyArrayList);
+        return "Admin/companyView";
+
+    }
+
+    @GetMapping("/admin/customers/view")
+    public String viewCustomers(Model model) {
+        ArrayList<Customer> customerArrayList = (ArrayList) customerRepo.findAll();
+        model.addAttribute("customers", customerArrayList);
+        return "Admin/customerView";
+
+    }
+
 }
