@@ -27,8 +27,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="offer:${offer}">
-                <td th:text="${offer.id}"></td>
+            <tr th:each="offer : ${company.offerList}">
+                <td th:text="${company.id}"></td>
                 <td th:text="${offer.name}"></td>
                 <td th:text="${offer.quantity}"></td>
                 <td th:text="${offer.startDate}"></td>

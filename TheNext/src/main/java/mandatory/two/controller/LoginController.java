@@ -61,7 +61,7 @@ public class LoginController {
                 session.setAttribute("company", user);
                 System.out.println("FIRST NAME: " + user.getFirstName());
                 System.out.println("PASSWORD: " + user.getPassword());
-                return "company/index";
+                return "redirect:/offer";
             }
         } else if (customerRepo.findByEmail(email) != null) {
             user = customerRepo.findByEmail(email);

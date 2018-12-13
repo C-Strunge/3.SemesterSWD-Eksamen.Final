@@ -1,8 +1,6 @@
 package mandatory.two.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -12,7 +10,8 @@ import java.util.List;
 @Entity
 public class Company extends User {
 
-    @OneToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name="id")
     private List<Offer> offerList;
     private String companyName;
     private Boolean isActive;
@@ -23,6 +22,10 @@ public class Company extends User {
     private List<Category> categoryList;
 
     public Company() {
+    }
+
+    public void addOffer(Offer offer){
+        offerList.add(offer);
     }
 
     public List<Offer> getOfferList() {

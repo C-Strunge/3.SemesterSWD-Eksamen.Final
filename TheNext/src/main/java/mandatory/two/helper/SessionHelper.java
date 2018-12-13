@@ -20,8 +20,8 @@ public class SessionHelper {
     public static boolean isAdmin(HttpServletRequest request) {
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("user") != null) {
-            if (session.getAttribute("user") instanceof Admin) {
+        if (session.getAttribute("admin") != null) {
+            if (session.getAttribute("admin") instanceof Admin) {
                 return true;
             } else {
                 return false;
@@ -34,8 +34,8 @@ public class SessionHelper {
     public static boolean isCompany(HttpServletRequest request) {
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("user") != null) {
-            if (session.getAttribute("user") instanceof Company) {
+        if (session.getAttribute("company") != null) {
+            if (session.getAttribute("company") instanceof Company) {
                 return true;
             } else {
                 return false;
@@ -48,8 +48,8 @@ public class SessionHelper {
     public static boolean isCustomer(HttpServletRequest request) {
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("user") != null) {
-            if (session.getAttribute("user") instanceof Customer) {
+        if (session.getAttribute("customer") != null) {
+            if (session.getAttribute("customer") instanceof Customer) {
                 return true;
             } else {
                 return false;
