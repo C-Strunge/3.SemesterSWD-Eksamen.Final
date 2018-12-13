@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,4 +62,33 @@ public class OfferController {
 
         return "Offer/viewOffer";
     }
+
+    @GetMapping("/offer/edit/{id}")
+    public String editOffer(@PathVariable Long id, Model model) {
+        Optional<Offer> offer = offerRepo.findById(id);
+        Offer o = offer.get();
+        o.setId(id);
+        model.addAttribute("offer", o);
+        return "offer/editOffer";
+    }
+
+    @PostMapping("/offer/edit")
+    public String editOffer(@ModelAttribute Offer offer) {
+        offerRepo.save(offer);
+        return "";
+    }
+    @GetMapping("/offer/delete/{id}")
+    public String deleteOffer(@PathVariable Long id) {
+            offerRepo.deleteById(id);
+        return "redirect:/offer";
+    }
+
+    @GetMapping("offer/buy/{id}")
+    public String buyOffer(@PathVariable Long id, Model model, HttpServletRequest request){
+        Optional<Offer> offerOptional = offerRepo.findById(id);
+        Offer offer = offerOptional.get();
+        model.addAttribute("offer", offer);
+        return "Offer/buyOffer";
+    }
+
 }

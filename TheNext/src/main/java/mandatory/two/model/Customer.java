@@ -1,6 +1,8 @@
 package mandatory.two.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
@@ -11,6 +13,9 @@ import java.util.List;
 @Entity
 public class Customer extends User {
 
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name="id")
+    private List<Offer> offerList;
     private String cardType;
     private String nameOnCard;
     private Long creditCardNumber;
@@ -21,6 +26,14 @@ public class Customer extends User {
     private Boolean gdprConsent;
 
     public Customer() {
+    }
+
+    public List<Offer> getOfferList() {
+        return offerList;
+    }
+
+    public void setOfferList(List<Offer> offerList) {
+        this.offerList = offerList;
     }
 
     public String getCardType() {

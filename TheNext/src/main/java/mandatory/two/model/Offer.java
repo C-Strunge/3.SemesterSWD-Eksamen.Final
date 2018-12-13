@@ -20,8 +20,17 @@ public class Offer {
     private Integer quantity;
     private String pictureUrl;
     private Boolean isActive;
+    private Integer quantityToBuy;
 
     public Offer() {
+    }
+
+    public Integer getQuantityToBuy() {
+        return quantityToBuy;
+    }
+
+    public void setQuantityToBuy(Integer quantityToBuy) {
+        this.quantityToBuy = quantityToBuy;
     }
 
     public Long getId() {

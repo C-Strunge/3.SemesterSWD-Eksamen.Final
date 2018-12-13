@@ -1,0 +1,70 @@
+<!--
+* Created by Matthias Skou 3/12/2018
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Buy Offer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <form method="post" action="/offer/buy">
+            <div align="center">
+                <div class="card" style="width: 50rem;">
+                    <img class="card-img-top" th:src="${offer.pictureUrl}">
+                    <div class="card-body">
+                        <h4 class="card-title" th:text="${offer.name}"></h4>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Price each
+                                <span class="badge badge-secondary" th:text="${offer.price} + ' DKK'"></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Stock
+                                <span class="badge badge-secondary" th:text="${offer.quantity}"></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Quantity
+
+                                        <div class="form-group col-md-2" th:marginwidth="0">
+                                            <div align="right" >
+                                            <input th:field="${offer.quantityToBuy}" placeholder="amount" type="number"
+                                                   class="form-control form-control-sm" min="1">
+                                        </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                        <br>
+                        <a href="#" class="btn btn-success">Buy</a>
+                        <br>
+                        <small class="text-muted" th:text="'Offer ends on ' + ${offer.endDate}">
+                        </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
