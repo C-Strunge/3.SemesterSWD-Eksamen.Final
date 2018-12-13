@@ -3,8 +3,10 @@ package mandatory.two.controller;
 import mandatory.two.helper.CreateHelper;
 import mandatory.two.helper.SessionHelper;
 import mandatory.two.model.Company;
+import mandatory.two.model.Customer;
 import mandatory.two.model.Offer;
 import mandatory.two.repository.CompanyRepository;
+import mandatory.two.repository.CustomerRepository;
 import mandatory.two.repository.OfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,8 @@ public class OfferController {
     OfferRepository offerRepo;
     @Autowired
     CompanyRepository companyRepo;
+    @Autowired
+    CustomerRepository customerRepo;
 
 
     @GetMapping("/offer/create")
@@ -83,12 +87,32 @@ public class OfferController {
         return "redirect:/offer";
     }
 
-    @GetMapping("offer/buy/{id}")
-    public String buyOffer(@PathVariable Long id, Model model, HttpServletRequest request){
+    @GetMapping("/offer/buy/{id}")
+    public String buyOffer(@PathVariable Long id, Model model){
         Optional<Offer> offerOptional = offerRepo.findById(id);
         Offer offer = offerOptional.get();
         model.addAttribute("offer", offer);
         return "Offer/buyOffer";
     }
+    @PostMapping("/offer/buy")
+    public String buyOffer(@ModelAttribute Offer offer, HttpServletRequest request) {
+        offerRepo.save(offer);
+        System.out.println("before if");
+        if (SessionHelper.isCustomer(request)) {
+            System.out.println("after if");
+            HttpSession session = request.getSession();
+            Customer customerSession = (Customer) session.getAttribute("customer");
+
+            Optional<Customer> customerOptional = customerRepo.findById(customerSession.getId());
+            Customer customer = customerOptional.get();
+
+            System.out.println("Customer id: " + customer.getId());
+            System.out.println("Offer id: " + offer.getId());
+            customer.addOffer(offer);
+            customerRepo.save(customer);
+        }
+        return "";
+    }
+
 
 }

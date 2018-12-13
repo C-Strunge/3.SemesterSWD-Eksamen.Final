@@ -28,6 +28,10 @@ public class Customer extends User {
     public Customer() {
     }
 
+    public void addOffer(Offer offer){
+        offerList.add(offer);
+    }
+
     public List<Offer> getOfferList() {
         return offerList;
     }
@@ -35,6 +39,8 @@ public class Customer extends User {
     public void setOfferList(List<Offer> offerList) {
         this.offerList = offerList;
     }
+
+
 
     public String getCardType() {
         return cardType;

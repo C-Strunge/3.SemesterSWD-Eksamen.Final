@@ -67,13 +67,13 @@ public class LoginController {
             user = customerRepo.findByEmail(email);
             if (user.getPassword().equals(password) && user.getEmail() != null) {
                 session.setAttribute("customer", user);
-                return "customer/index";
+                return "redirect:/customer/create";
             }
         } else if (adminRepo.findByEmail(email) != null) {
             user = adminRepo.findByEmail(email);
             if (user.getPassword().equals(password) && user.getEmail() != null) {
                 session.setAttribute("admin", user);
-                return "admin/index";
+                return "redirect:/admin/verify";
             }
         }
         //return SessionHelper.loginRedirect(user);
