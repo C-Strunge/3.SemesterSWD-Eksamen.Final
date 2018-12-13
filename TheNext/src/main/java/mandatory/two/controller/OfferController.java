@@ -36,6 +36,7 @@ public class OfferController {
     @Autowired
     CustomerRepository customerRepo;
 
+    String error = "";
 
     @GetMapping("/offer/create")
     public String createOffer(Model model) {
@@ -81,25 +82,45 @@ public class OfferController {
         offerRepo.save(offer);
         return "";
     }
+
     @GetMapping("/offer/delete/{id}")
     public String deleteOffer(@PathVariable Long id) {
-            offerRepo.deleteById(id);
+        offerRepo.deleteById(id);
         return "redirect:/offer";
     }
 
     @GetMapping("/offer/buy/{id}")
-    public String buyOffer(@PathVariable Long id, Model model){
+    public String buyOffer(@PathVariable Long id, Model model) {
         Optional<Offer> offerOptional = offerRepo.findById(id);
         Offer offer = offerOptional.get();
         model.addAttribute("offer", offer);
+        model.addAttribute("error", error);
+        error = "";
         return "Offer/buyOffer";
     }
+
     @PostMapping("/offer/buy")
     public String buyOffer(@ModelAttribute Offer offer, HttpServletRequest request) {
+        // Makes sure that quantity bought is incremented and not replaced in DB
+        Optional<Offer> offerOptional = offerRepo.findById(offer.getId());
+        Offer offerTemp = offerOptional.get();
+        Integer quantityBought = offerTemp.getQuantityBought();
+        offer.setQuantityBought(offer.getQuantityBought() + quantityBought);
+
+
+        if (offer.getQuantity() - offer.getQuantityBought() < 0) {
+            error = "Your desired quantity exceeded the available stock - please try again.";
+            String redirect = "redirect:/offer/buy/" + offer.getId() + "";
+            System.out.println("REDIRECT: " + redirect);
+            return redirect;
+        }
+        if(offer.getQuantity() - offer.getQuantityBought() == 0){
+            offer.setActive(false);
+        }
+
         offerRepo.save(offer);
-        System.out.println("before if");
         if (SessionHelper.isCustomer(request)) {
-            System.out.println("after if");
+
             HttpSession session = request.getSession();
             Customer customerSession = (Customer) session.getAttribute("customer");
 
@@ -107,13 +128,10 @@ public class OfferController {
             Customer customer = customerOptional.get();
             customer.setId(customerSession.getId());
 
-            System.out.println("Customer id: " + customer.getId());
-            System.out.println("Offer id: " + offer.getId());
             customer.addOffer(offer);
             customerRepo.save(customer);
         }
         return "";
     }
-
 
 }
