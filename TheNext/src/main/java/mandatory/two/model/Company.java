@@ -14,7 +14,7 @@ public class Company extends User {
     @JoinColumn(name="id")
     private List<Offer> offerList;
     private String companyName;
-    private Boolean isActive;
+    private Integer isActive;
     private Integer cvr;
     private Long accountNumber;
     private Integer registrationNumber;
@@ -76,7 +76,11 @@ public class Company extends User {
         this.categoryList = categoryList;
     }
 
-    public Boolean getActive() { return isActive; }
+    public Integer getIsActive() {
+        return isActive;
+    }
 
-    public void setActive(Boolean active) { isActive = active; }
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
+    }
 }

@@ -37,7 +37,7 @@ public class CompanyController {
     public String createCompany(@ModelAttribute Company company) {
         ArrayList<User> companyArrayList = (ArrayList) companyRepo.findAllByEmail(company.getEmail());
         if (CreateHelper.checkIfEmailNotExists(companyArrayList)) {
-            company.setActive(false );
+            company.setIsActive(0);
             companyRepo.save(company);
         }
         // Insert else statement that redirects to company/create
