@@ -24,8 +24,8 @@ public class AdminController {
 
     @GetMapping("/admin/verify")
     public String verifyCompany(Model model) {
-        ArrayList<Company> verifyCompanyList = (ArrayList) companyRepository.findAllByActive(false);
-        model.addAttribute("company", verifyCompanyList);
+        //ArrayList<Company> verifyCompanyList = (ArrayList) companyRepository.findAllByActive(false);
+        //model.addAttribute("company", verifyCompanyList);
         return "verifyCompany";
     }
 }

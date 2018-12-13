@@ -12,5 +12,5 @@ import java.util.List;
 public interface CompanyRepository extends CrudRepository<Company, Long> {
     Company findByEmail(String email);
     List<Company> findAllByEmail(String s);
-    List<Company> findAllByActive(boolean company);
+    //List<Company> findAllByActive(Boolean b);
 }
