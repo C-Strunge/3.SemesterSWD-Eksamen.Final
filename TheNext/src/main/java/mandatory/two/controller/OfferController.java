@@ -107,11 +107,9 @@ public class OfferController {
         Integer quantityBought = offerTemp.getQuantityBought();
         offer.setQuantityBought(offer.getQuantityBought() + quantityBought);
 
-
         if (offer.getQuantity() - offer.getQuantityBought() < 0) {
             error = "Your desired quantity exceeded the available stock - please try again.";
             String redirect = "redirect:/offer/buy/" + offer.getId() + "";
-            System.out.println("REDIRECT: " + redirect);
             return redirect;
         }
         if(offer.getQuantity() - offer.getQuantityBought() == 0){
@@ -119,19 +117,20 @@ public class OfferController {
         }
 
         offerRepo.save(offer);
-        if (SessionHelper.isCustomer(request)) {
-
-            HttpSession session = request.getSession();
-            Customer customerSession = (Customer) session.getAttribute("customer");
-
-            Optional<Customer> customerOptional = customerRepo.findById(customerSession.getId());
-            Customer customer = customerOptional.get();
-            customer.setId(customerSession.getId());
+        Customer customer = CreateHelper.getCustomerFromSession(request, customerRepo);
 
             customer.addOffer(offer);
             customerRepo.save(customer);
-        }
-        return "";
+
+        return "Offer/receipt";
+    }
+
+    @GetMapping("/offer/bought")
+    public String boughtOffer(Model model, HttpServletRequest request){
+
+        Customer customer = CreateHelper.getCustomerFromSession(request, customerRepo);
+        model.addAttribute("customer", customer);
+        return "Offer/viewBoughtOffer";
     }
 
 }
