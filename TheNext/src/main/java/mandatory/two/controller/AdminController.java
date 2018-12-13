@@ -36,8 +36,8 @@ public class AdminController {
     }
 
     @GetMapping("/admin/verify/accepted/{id}")
-    public String acceptCompany(@PathVariable Long id){
-        Optional<Company> optionalCompany= companyRepository.findById(id);
+    public String acceptCompany(@PathVariable Long id) {
+        Optional<Company> optionalCompany = companyRepository.findById(id);
         Company c = optionalCompany.get();
         c.setIsActive(1);
         companyRepository.save(c);
@@ -50,8 +50,8 @@ public class AdminController {
         return "redirect:/admin/verify";
     }
 
-    @GetMapping("/admin/edit/customer/{id}")
-    public String editCustomerAdmin(@PathVariable Long id, Model model){
+    @GetMapping("/admin/customer/edit/{id}")
+    public String editCustomerAdmin(@PathVariable Long id, Model model) {
         Optional<Customer> customerOptional = customerRepo.findById(id);
         Customer customer = customerOptional.get();
         customer.setId(id);
@@ -60,11 +60,18 @@ public class AdminController {
         return "Admin/editCustomerAdmin";
     }
 
-    @PostMapping("/admin/edit/customer")
-    public String editCustomer(@ModelAttribute Customer customer){
+    @PostMapping("/admin/edit/customer/")
+    public String editCustomer(@ModelAttribute Customer customer) {
         customerRepo.save(customer);
-        return "redirect:/admin/verify";
+        return "redirect:/admin/customers/view/";
     }
+
+    @GetMapping("/admin/customer/delete/{id}")
+    public String deleteCustomer(@PathVariable Long id) {
+        customerRepo.deleteById(id);
+        return "redirect:/admin/customers/view/";
+    }
+
     @GetMapping("/admin/edit/company/{id}")
     public String editCompany(@PathVariable Long id, Model model) {
         Optional<Company> company = companyRepository.findById(id);
@@ -86,6 +93,14 @@ public class AdminController {
         ArrayList<Company> companyArrayList = (ArrayList) companyRepository.findAllByIsActive(1);
         model.addAttribute("companies", companyArrayList);
         return "Admin/companyView";
+
+    }
+
+    @GetMapping("/admin/customers/view")
+    public String viewCustomers(Model model) {
+        ArrayList<Customer> customerArrayList = (ArrayList) customerRepo.findAll();
+        model.addAttribute("customers", customerArrayList);
+        return "Admin/customerView";
 
     }
 
