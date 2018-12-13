@@ -87,12 +87,16 @@
             -->
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="inputAddress2">GDPR Consent</label>
+                    <!-- Show more modal knap -->
+                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target=".bd-example-modal-lg">
+                        I accept terms & conditions
+                    </button>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineRadio2"
                                th:field="${customer.gdprConsent}" value="true"
                                text="Accept" required="true" title="Please accept by checking the box">
                     </div>
+
                 </div>
             </div>
             <h3>Select Categories <br>
@@ -122,6 +126,30 @@
         </form>
     </div>
 </div>
+<!-- Large modal -->
+<!-- Modal til 'Show more' funktion -->
+
+<div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+ aria-hidden="true">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Terms & conditions</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non ligula eget lectus elementum pulvinar at ac lectus. Aliquam nec nibh justo. Pellentesque scelerisque ipsum sed purus tempor pretium in eget nulla. Duis a velit eu massa vulputate rutrum. Nulla bibendum efficitur eros quis ultrices. Sed quis sagittis risus, non ornare diam. Vestibulum condimentum nisi sit amet nulla lobortis, nec euismod velit pretium. Vivamus quis tortor facilisis nisi euismod molestie at non metus. In ac leo magna. In placerat convallis urna, a ullamcorper sem malesuada quis. Donec sit amet consectetur mi. Proin id mauris consectetur, ornare augue et, lacinia nisl. Morbi faucibus nec ante ac tincidunt. Donec laoreet dignissim blandit.
+        <br><br>
+        Vestibulum volutpat ut magna vel congue. Nunc id dignissim leo, vitae feugiat lacus. Pellentesque eleifend sem nulla, non sollicitudin sapien vestibulum in. Duis luctus erat vel est scelerisque, in feugiat leo pretium. Praesent nec luctus lectus, ac aliquam enim. Quisque elementum neque turpis, sit amet ultrices felis interdum interdum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed a iaculis nibh. Cras pellentesque imperdiet gravida. Donec neque mi, facilisis in rhoncus elementum, dapibus a purus. Sed facilisis rutrum justo quis maximus. Nulla id leo massa. Nulla non hendrerit lacus.
+        <br><br>
+        Cras dignissim tristique porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mi mi, iaculis sed nisl at, consectetur pharetra ligula. Integer feugiat nisl ligula, a varius est feugiat sed. Donec quis bibendum lacus, et laoreet est. Aliquam pretium diam euismod efficitur elementum. Nunc a lacinia sem. In tristique finibus nibh eu fermentum. Fusce molestie dapibus sapien sit amet convallis.
+        <br><br>
+    </div>
+</div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

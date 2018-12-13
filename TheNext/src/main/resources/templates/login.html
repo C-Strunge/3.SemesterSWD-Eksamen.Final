@@ -12,13 +12,13 @@
 </html>
 -->
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css.css">
 </head>
 <body>
@@ -31,7 +31,8 @@
                     <form action="/login" method="post" id="login-form">
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
-                            <input type="text" name="email" id="email" class="form-control" placeholder="somebody@example.com">
+                            <input type="text" name="email" id="email" class="form-control"
+                                   placeholder="somebody@example.com">
                         </div>
                         <div class="form-group">
                             <label for="password" class="sr-only">Password</label>
@@ -40,6 +41,19 @@
                         <div class="form-group" th:text="${error}"></div>
                         <button type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block">Log in</button>
                     </form>
+                    <div align="center">
+                        <small class="text-muted">First time here?</small>
+                        <br>
+                        <a href="/customer/create">
+                            <small class="text-muted">Create customer</small>
+                        </a>
+                        <small class="text-muted"> or </small>
+                        <a href="/company/create">
+                            <small class="text-muted">Create company</small>
+                        </a>
+                        <br>
+                    </div>
+
                     <hr>
                 </div>
             </div> <!-- /.col-xs-12 -->
@@ -47,7 +61,8 @@
     </div> <!-- /.container -->
 </section>
 
-<div class="modal fade forget-modal" tabindex="-1" role="dialog" aria-labelledby="myForgetModalLabel" aria-hidden="true">
+<div class="modal fade forget-modal" tabindex="-1" role="dialog" aria-labelledby="myForgetModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
