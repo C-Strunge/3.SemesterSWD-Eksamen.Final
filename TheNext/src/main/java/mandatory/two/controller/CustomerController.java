@@ -75,6 +75,7 @@ public class CustomerController {
 
     @PostMapping("/customer/edit")
     public String editCustomer(@ModelAttribute Customer customer){
+        System.out.println("CUSTOMER ID: " + customer.getId());
         customerRepo.save(customer);
         return "";
     }

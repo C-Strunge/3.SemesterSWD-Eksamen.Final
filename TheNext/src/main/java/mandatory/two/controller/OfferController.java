@@ -105,6 +105,7 @@ public class OfferController {
 
             Optional<Customer> customerOptional = customerRepo.findById(customerSession.getId());
             Customer customer = customerOptional.get();
+            customer.setId(customerSession.getId());
 
             System.out.println("Customer id: " + customer.getId());
             System.out.println("Offer id: " + offer.getId());
