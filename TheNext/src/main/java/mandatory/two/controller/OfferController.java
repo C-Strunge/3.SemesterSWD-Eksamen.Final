@@ -109,7 +109,7 @@ public class OfferController {
     }
 
     @PostMapping("/offer/buy")
-    public String buyOffer(@ModelAttribute Offer offer, HttpServletRequest request) {
+    public String buyOffer(@ModelAttribute Offer offer, HttpServletRequest request, Model model) {
         // Makes sure that quantity bought is incremented and not replaced in DB
         Optional<Offer> offerOptional = offerRepo.findById(offer.getId());
         Offer offerTemp = offerOptional.get();
@@ -125,9 +125,10 @@ public class OfferController {
             offer.setActive(false);
         }
 
+
         offerRepo.save(offer);
         Customer customer = CreateHelper.getCustomerFromSession(request, customerRepo);
-
+            model.addAttribute("customer", customer);
             customer.addOffer(offer);
             customerRepo.save(customer);
 
