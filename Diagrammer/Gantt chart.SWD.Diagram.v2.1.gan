@@ -4,6 +4,8 @@
         <field id="tpd3" name="Navn" width="300" order="0"/>
         <field id="tpd4" name="Start dato" width="105" order="1"/>
         <field id="tpd5" name="Slut dato" width="122" order="2"/>
+        <timeline><![CDATA[153,158]]></timeline>
+        <option id="color.recent"><![CDATA[#000000]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Navn" width="210" order="0"/>
@@ -33,6 +35,7 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
+        <task id="158" name="Milestone: Projektstart" color="#000000" meeting="true" start="2018-11-30" duration="0" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
         <task id="0" name="1,1 Firma, bruger og tilbudstabel i database" color="#8cb6ce" meeting="false" start="2018-11-30" duration="1" complete="0" thirdDate="2018-11-23" thirdDate-constraint="0" expand="true">
             <depend id="17" type="2" difference="0" hardness="Rubber"/>
             <depend id="30" type="2" difference="0" hardness="Rubber"/>
@@ -69,26 +72,27 @@
             <depend id="72" type="2" difference="0" hardness="Rubber"/>
         </task>
         <task id="54" name="3,2 Redigerings- og slettefunktion af eksisterende tilbud" color="#8cb6ce" meeting="false" start="2018-12-12" duration="1" complete="0" thirdDate="2018-11-23" thirdDate-constraint="0" expand="true"/>
-        <task id="134" name="3,3 Underside med oversigt over aktive tilbud" meeting="false" start="2018-11-28" duration="1" complete="0" expand="true"/>
+        <task id="134" name="3,3 Underside med oversigt over aktive tilbud" color="#8cb6ce" meeting="false" start="2018-12-13" duration="1" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
         <task id="56" name="4,1 Godkendelsesfunktion til firmaoprettelse" color="#8cb6ce" meeting="false" start="2018-12-12" duration="1" complete="0" thirdDate="2018-11-23" thirdDate-constraint="0" expand="true"/>
         <task id="58" name="4,2 Redigering af information for både kunder og firmaer, med tilhørende undersider der henter brugere" color="#8cb6ce" meeting="false" start="2018-12-12" duration="1" complete="0" thirdDate="2018-11-23" thirdDate-constraint="0" expand="true"/>
         <task id="67" name="4,3 Slettefunktion der fjerner en kunde eller et firma" color="#8cb6ce" meeting="false" start="2018-12-14" duration="1" complete="0" thirdDate="2018-11-23" thirdDate-constraint="0" expand="true"/>
-        <task id="138" name="4,4 Underside til godkendelse af nyoprettede firmaer" meeting="false" start="2018-11-28" duration="1" complete="0" expand="true"/>
+        <task id="138" name="4,4 Underside til godkendelse af nyoprettede firmaer" color="#8cb6ce" meeting="false" start="2018-12-13" duration="1" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
         <task id="72" name="5,1 Funktion der ændrer lagerantallet for det pågældende tilbud, med tilhørende restriktioner" color="#8cb6ce" meeting="false" start="2018-12-13" duration="1" complete="0" thirdDate="2018-11-29" thirdDate-constraint="0" expand="true"/>
         <task id="79" name="5,3 Underside til salg af tilbud" color="#8cb6ce" meeting="false" start="2018-12-14" duration="1" complete="0" thirdDate="2018-11-29" thirdDate-constraint="0" expand="true">
             <task id="95" name="5,2 Funktion der kan bekræfte køb og vise en Lorem Ipsum kvittering" color="#8cb6ce" meeting="false" start="2018-12-14" duration="1" complete="0" thirdDate="2018-11-29" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="142" name="5,4 Underside der viser købte tilbud, med antal" meeting="false" start="2018-11-28" duration="1" complete="0" expand="true"/>
+        <task id="142" name="5,4 Underside der viser købte tilbud, med antal" color="#8cb6ce" meeting="false" start="2018-12-13" duration="1" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
         <task id="96" name="6,1 Funktion der henter salgsinformation fra databasen, med tilhørende underside." color="#8cb6ce" meeting="false" start="2018-12-14" duration="1" complete="0" thirdDate="2018-11-29" thirdDate-constraint="0" expand="true"/>
         <task id="101" name="7,1 Som kunde skal jeg kunne modtage en meddelelse om tilbud indenfor en geolokation på 5 km" color="#8cb6ce" meeting="false" start="2018-12-17" duration="1" complete="0" thirdDate="2018-11-29" thirdDate-constraint="0" expand="true">
             <depend id="104" type="2" difference="0" hardness="Rubber"/>
         </task>
         <task id="104" name="7,2 Underside til at søge på tilbud på postnummer" color="#8cb6ce" meeting="false" start="2018-12-18" duration="1" complete="0" thirdDate="2018-11-29" thirdDate-constraint="0" expand="true"/>
-        <task id="146" name="8,1 Opret brugerspecifikke navigeringsbarer på alle undersider tilknyttet brugeren" meeting="false" start="2018-11-28" duration="1" complete="0" expand="true"/>
-        <task id="147" name="8,2 Opret logo og tilknyt navigeringsbaren" meeting="false" start="2018-11-28" duration="1" complete="0" expand="true"/>
-        <task id="148" name="8,3 Opret brugerspecifikke forsider" meeting="false" start="2018-11-28" duration="1" complete="0" expand="true"/>
-        <task id="149" name="9,1 Opret modal for vilkår og betingelser der indeholder Lorem Ipsum" meeting="false" start="2018-11-28" duration="1" complete="0" expand="true"/>
-        <task id="150" name="10,1 Opret to knapper der redirecter til hhv. opret kunde og virksomhed." meeting="false" start="2018-11-28" duration="1" complete="0" expand="true"/>
+        <task id="146" name="8,1 Opret brugerspecifikke navigeringsbarer på alle undersider tilknyttet brugeren" color="#8cb6ce" meeting="false" start="2018-12-13" duration="1" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
+        <task id="147" name="8,2 Opret logo og tilknyt navigeringsbaren" color="#8cb6ce" meeting="false" start="2018-12-15" duration="1" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
+        <task id="148" name="8,3 Opret brugerspecifikke forsider" color="#8cb6ce" meeting="false" start="2018-12-15" duration="1" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
+        <task id="149" name="9,1 Opret modal for vilkår og betingelser der indeholder Lorem Ipsum" color="#8cb6ce" meeting="false" start="2018-12-15" duration="1" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
+        <task id="150" name="10,1 Opret to knapper der redirecter til hhv. opret kunde og virksomhed." color="#8cb6ce" meeting="false" start="2018-12-15" duration="1" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" expand="true"/>
+        <task id="153" name="Milestone: Deadline for produkt" color="#000000" shape="1,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1" meeting="true" start="2018-12-17" duration="0" complete="0" thirdDate="2018-11-28" thirdDate-constraint="0" priority="4" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Christian" function="Default:1" contacts="" phone="">
