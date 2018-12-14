@@ -61,7 +61,7 @@ public class CompanyController {
         companyRepo.save(company);
         return "";
     }
-    @GetMapping("/statistics")
+    @GetMapping("/company/statistics")
     public String offerView(Model model, HttpServletRequest request) {
 
         Company company = CreateHelper.getCompanyFromSession(request, companyRepo);

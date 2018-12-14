@@ -94,4 +94,10 @@ public class CustomerController {
         customerRepo.save(customer);
         return "";
     }
+
+    @GetMapping("/customer/offer/view")
+    public String customerOfferView(){
+        return "";
+    }
+
 }
