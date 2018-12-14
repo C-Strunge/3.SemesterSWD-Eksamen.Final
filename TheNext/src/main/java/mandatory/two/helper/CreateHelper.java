@@ -1,8 +1,10 @@
 package mandatory.two.helper;
 
+import mandatory.two.model.Admin;
 import mandatory.two.model.Company;
 import mandatory.two.model.Customer;
 import mandatory.two.model.User;
+import mandatory.two.repository.AdminRepository;
 import mandatory.two.repository.CompanyRepository;
 import mandatory.two.repository.CustomerRepository;
 
@@ -46,5 +48,19 @@ public class CreateHelper {
             customer.setId(customerSession.getId());
         }
         return customer;
+    }
+
+    public static Admin getAdminFromSession(HttpServletRequest request, AdminRepository adminRepo) {
+        Admin admin = null;
+        if (SessionHelper.isAdmin(request)) {
+
+            HttpSession session = request.getSession();
+            Admin adminSession = (Admin) session.getAttribute("admin");
+
+            Optional<Admin> adminOptional = adminRepo.findById(adminSession.getId());
+            admin = adminOptional.get();
+            admin.setId(adminSession.getId());
+        }
+        return admin;
     }
 }

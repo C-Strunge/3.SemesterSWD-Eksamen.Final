@@ -67,7 +67,7 @@ public class LoginController {
             user = customerRepo.findByEmail(email);
             if (user.getPassword().equals(password) && user.getEmail() != null) {
                 session.setAttribute("customer", user);
-                return "redirect:/customer/create";
+                return "redirect:/offer/bought";
             }
         } else if (adminRepo.findByEmail(email) != null) {
             user = adminRepo.findByEmail(email);

@@ -39,8 +39,10 @@ public class OfferController {
     String error = "";
 
     @GetMapping("/offer/create")
-    public String createOffer(Model model) {
+    public String createOffer(Model model, HttpServletRequest request) {
 
+        Company company = CreateHelper.getCompanyFromSession(request, companyRepo);
+        model.addAttribute("company", company);
         model.addAttribute("offer", new Offer());
 
         return "Offer/createOffer";
@@ -64,16 +66,19 @@ public class OfferController {
     public String offerView(Model model, HttpServletRequest request) {
 
         Company company = CreateHelper.getCompanyFromSession(request, companyRepo);
+        System.out.println("COMPANY ID: "  + company.getId());
         model.addAttribute("company", company);
 
         return "Offer/viewOffer";
     }
 
     @GetMapping("/offer/edit/{id}")
-    public String editOffer(@PathVariable Long id, Model model) {
+    public String editOffer(@PathVariable Long id, Model model, HttpServletRequest request) {
         Optional<Offer> offer = offerRepo.findById(id);
         Offer o = offer.get();
         o.setId(id);
+        Company company = CreateHelper.getCompanyFromSession(request, companyRepo);
+        model.addAttribute("company", company);
         model.addAttribute("offer", o);
         return "offer/editOffer";
     }
@@ -91,9 +96,12 @@ public class OfferController {
     }
 
     @GetMapping("/offer/buy/{id}")
-    public String buyOffer(@PathVariable Long id, Model model) {
+    public String buyOffer(@PathVariable Long id, Model model, HttpServletRequest request) {
         Optional<Offer> offerOptional = offerRepo.findById(id);
         Offer offer = offerOptional.get();
+
+        Customer customer = CreateHelper.getCustomerFromSession(request, customerRepo);
+        model.addAttribute("customer", customer);
         model.addAttribute("offer", offer);
         model.addAttribute("error", error);
         error = "";
