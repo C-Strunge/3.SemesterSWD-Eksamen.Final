@@ -5,6 +5,7 @@ package mandatory.two.controller;
 
 
 import mandatory.two.helper.CreateHelper;
+import mandatory.two.helper.SessionHelper;
 import mandatory.two.model.Admin;
 import mandatory.two.model.Category;
 import mandatory.two.model.Company;
@@ -41,7 +42,7 @@ public class AdminController {
         Admin admin = CreateHelper.getAdminFromSession(request, adminRepo);
         model.addAttribute("admin", admin);
         model.addAttribute("companyToView", verifyCompanyList);
-        return "Admin/verifyCompany";
+        return SessionHelper.redirectAdministrator(request, "Admin/verifyCompany");
     }
 
     @GetMapping("/admin/verify/accepted/{id}")
@@ -68,7 +69,7 @@ public class AdminController {
         model.addAttribute("admin", admin);
         model.addAttribute("category", categoryRepo.findAll());
         model.addAttribute("customer", customer);
-        return "Admin/editCustomerAdmin";
+        return SessionHelper.redirectAdministrator(request,"Admin/editCustomerAdmin");
     }
 
     @PostMapping("/admin/edit/customer/")
@@ -92,7 +93,7 @@ public class AdminController {
         model.addAttribute("admin", admin);
         model.addAttribute("category", categoryRepo.findAll());
         model.addAttribute("company", c);
-        return "admin/editCompanyAdmin";
+        return SessionHelper.redirectAdministrator(request,"admin/editCompanyAdmin");
     }
 
     @PostMapping("/admin/edit/company/")
@@ -107,7 +108,7 @@ public class AdminController {
         Admin admin = CreateHelper.getAdminFromSession(request, adminRepo);
         model.addAttribute("admin", admin);
         model.addAttribute("companies", companyArrayList);
-        return "Admin/companyView";
+        return SessionHelper.redirectAdministrator(request,"Admin/companyView");
 
     }
 
@@ -117,7 +118,7 @@ public class AdminController {
         Admin admin = CreateHelper.getAdminFromSession(request, adminRepo);
         model.addAttribute("admin", admin);
         model.addAttribute("customers", customerArrayList);
-        return "Admin/customerView";
+        return SessionHelper.redirectAdministrator(request,"Admin/customerView");
 
     }
 

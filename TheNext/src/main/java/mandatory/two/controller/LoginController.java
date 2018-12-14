@@ -1,6 +1,9 @@
 package mandatory.two.controller;
 
 import mandatory.two.helper.SessionHelper;
+import mandatory.two.model.Admin;
+import mandatory.two.model.Company;
+import mandatory.two.model.Customer;
 import mandatory.two.model.User;
 import mandatory.two.repository.AdminRepository;
 import mandatory.two.repository.CompanyRepository;
@@ -34,15 +37,8 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String login(Model model, HttpServletRequest request) {
+    public String login(Model model) {
 
-        HttpSession session = request.getSession();
-        if (SessionHelper.isSessionValid(request)) {
-            User user = (User) session.getAttribute("user");
-
-            //return SessionHelper.loginRedirect(user);
-            return "";
-        }
         model.addAttribute("error", error);
         error = "";
         return "login";
@@ -56,23 +52,21 @@ public class LoginController {
         User user;
         HttpSession session = request.getSession();
         if (companyRepo.findByEmail(email) != null) {
-            user = companyRepo.findByEmail(email);
-            if (user.getPassword().equals(password) && user.getEmail() != null) {
-                session.setAttribute("company", user);
-                System.out.println("FIRST NAME: " + user.getFirstName());
-                System.out.println("PASSWORD: " + user.getPassword());
-                return "redirect:/offer";
+            Company c = companyRepo.findByEmail(email);
+            if (c.getPassword().equals(password) && c.getEmail() != null) {
+                session.setAttribute("company", c);
+                return "redirect:/company/frontpage";
             }
         } else if (customerRepo.findByEmail(email) != null) {
-            user = customerRepo.findByEmail(email);
-            if (user.getPassword().equals(password) && user.getEmail() != null) {
-                session.setAttribute("customer", user);
-                return "redirect:/offer/bought";
+            Customer c = customerRepo.findByEmail(email);
+            if (c.getPassword().equals(password) && c.getEmail() != null) {
+                session.setAttribute("customer", c);
+                return "redirect:/customer/offer/view";
             }
         } else if (adminRepo.findByEmail(email) != null) {
-            user = adminRepo.findByEmail(email);
-            if (user.getPassword().equals(password) && user.getEmail() != null) {
-                session.setAttribute("admin", user);
+            Admin a = adminRepo.findByEmail(email);
+            if (a.getPassword().equals(password) && a.getEmail() != null) {
+                session.setAttribute("admin", a);
                 return "redirect:/admin/verify";
             }
         }
@@ -84,4 +78,12 @@ public class LoginController {
 
         return "redirect:/login";
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        SessionHelper.logout(request);
+
+        return "redirect:/login";
+    }
+
 }

@@ -1,6 +1,7 @@
 package mandatory.two.controller;
 
 import mandatory.two.helper.CreateHelper;
+import mandatory.two.helper.SessionHelper;
 import mandatory.two.model.Company;
 import mandatory.two.model.User;
 import mandatory.two.repository.CategoryRepository;
@@ -42,32 +43,40 @@ public class CompanyController {
             companyRepo.save(company);
         }
         // Insert else statement that redirects to company/create
-        return "redirect:/company";
+        return "redirect:/login";
     }
 
-
     @GetMapping("/company/edit/{id}")
-    public String editCompany(@PathVariable Long id, Model model) {
+    public String editCompany(@PathVariable Long id, Model model, HttpServletRequest request) {
         Optional<Company> company = companyRepo.findById(id);
         Company c = company.get();
         c.setId(id);
         model.addAttribute("category", categoryRepo.findAll());
         model.addAttribute("company", c);
-        return "company/editCompany";
+        return SessionHelper.redirectCompany(request, "company/editCompany");
     }
 
     @PostMapping("/company/edit")
     public String editCompany(@ModelAttribute Company company) {
         companyRepo.save(company);
-        return "";
+        return "redirect:/company/frontpage";
     }
+
     @GetMapping("/company/statistics")
     public String offerView(Model model, HttpServletRequest request) {
 
         Company company = CreateHelper.getCompanyFromSession(request, companyRepo);
         model.addAttribute("company", company);
 
-        return "Company/offerStatistics";
+        return SessionHelper.redirectCompany(request, "Company/offerStatistics");
+    }
+
+    @GetMapping("/company/frontpage")
+    public String companyFrontpage(Model model, HttpServletRequest request) {
+
+        Company company = CreateHelper.getCompanyFromSession(request, companyRepo);
+        model.addAttribute("company", company);
+        return SessionHelper.redirectCompany(request, "Company/frontpageCompany");
     }
 
 }
