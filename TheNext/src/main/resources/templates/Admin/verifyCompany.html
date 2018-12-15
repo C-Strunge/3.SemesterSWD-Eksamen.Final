@@ -30,8 +30,8 @@
                 <td th:text="${company.companyName}"></td>
                 <td th:text="${company.cvr}"></td>
                 <td>
-                    <a th:href="'/admin/verify/accepted/' + ${company.id}" class="btn btn-success">Accept </a>
-                    <a th:href="@{'/admin/verify/declined/'+${company.id}}" class="btn btn-danger">Decline</a>
+                    <a th:href="'/admin/verify/accepted/' + ${company.id}" class="btn btn-success"> Accept </a>
+                    <a th:href="@{'/admin/verify/declined/'+${company.id}}" class="btn btn-danger"> Decline </a>
                 </td>
             </tr>
             </tbody>
