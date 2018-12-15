@@ -13,7 +13,7 @@ import java.util.List;
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     Customer findByEmail(String email);
-    List<Company> findAllByEmail(String s);
+    List<Customer> findAllByEmail(String s);
     Customer findTopByOrderByIdDesc();
 
 }

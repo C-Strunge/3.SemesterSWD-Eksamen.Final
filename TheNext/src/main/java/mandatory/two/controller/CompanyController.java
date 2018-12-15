@@ -28,10 +28,14 @@ public class CompanyController {
     @Autowired
     private CategoryRepository categoryRepo;
 
+    String error = "";
+
     @GetMapping("/company/create")
     public String createCompany(Model model) {
         model.addAttribute("company", new Company());
         model.addAttribute("category", categoryRepo.findAll());
+        model.addAttribute("error", error);
+        error = "";
         return "company/createCompany";
     }
 
@@ -41,8 +45,10 @@ public class CompanyController {
         if (CreateHelper.checkIfEmailNotExists(companyArrayList)) {
             company.setIsActive(0);
             companyRepo.save(company);
+        } else {
+            error = "Email '" + company.getEmail() +  "' already exists, please try again!";
+            return "redirect:/company/create";
         }
-        // Insert else statement that redirects to company/create
         return "redirect:/login";
     }
 

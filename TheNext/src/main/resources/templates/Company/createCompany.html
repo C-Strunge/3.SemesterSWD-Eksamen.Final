@@ -19,6 +19,7 @@
         <h1 class="display-4">Create Company <br>
         </h1>
         <form method="post" action="/company/create">
+            <h5 class="text-danger" th:text="${error}" align="center"></h5>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputPassword4">Contact First Name</label>

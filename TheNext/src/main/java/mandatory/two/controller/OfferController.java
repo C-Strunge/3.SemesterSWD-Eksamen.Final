@@ -59,7 +59,7 @@ public class OfferController {
         company.addOffer(offer);
         companyRepo.save(company);
 
-        return "";
+        return "redirect:/offer";
     }
 
     @GetMapping("/offer")
@@ -86,7 +86,7 @@ public class OfferController {
     @PostMapping("/offer/edit")
     public String editOffer(@ModelAttribute Offer offer) {
         offerRepo.save(offer);
-        return "";
+        return "redirect:/offer";
     }
 
     @GetMapping("/offer/delete/{id}")

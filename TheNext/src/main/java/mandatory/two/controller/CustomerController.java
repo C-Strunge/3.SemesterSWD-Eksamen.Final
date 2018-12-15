@@ -34,10 +34,14 @@ public class CustomerController {
     @Autowired
     private OfferRepository offerRepo;
 
+    String error = "";
+
     @GetMapping("/customer/create")
     public String createCustomer(Model model) {
         model.addAttribute("customer", new Customer());
         model.addAttribute("category", categoryRepo.findAll());
+        model.addAttribute("error", error);
+        error = "";
         return "customer/createCustomer";
     }
 
@@ -46,8 +50,10 @@ public class CustomerController {
         ArrayList<User> customerArrayList = (ArrayList) customerRepo.findAllByEmail(customer.getEmail());
         if (CreateHelper.checkIfEmailNotExists(customerArrayList)) {
             customerRepo.save(customer);
+        } else {
+            error = "Email '" + customer.getEmail() +  "' already exists, please try again!";
+            return "redirect:/customer/create";
         }
-        // Insert else statement that redirects to company/create
         return "redirect:/customer/create/payment";
     }
 
