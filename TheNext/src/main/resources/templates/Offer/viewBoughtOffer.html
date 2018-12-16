@@ -18,6 +18,7 @@
             <tr>
                 <td scope="col">ID</td>
                 <td scope="col">Item name</td>
+                <td scope="col">Bought</td>
                 <td scope="col">Price pr. item</td>
             </tr>
             </thead>
@@ -25,7 +26,8 @@
             <tr th:each="offer : ${customer.offerList}">
                 <td th:text="${customer.id}"></td>
                 <td th:text="${offer.name}"></td>
-                <td th:text="${offer.price}"></td>
+                <td th:text="${offer.quantityBought}"></td>
+                <td th:text="${offer.price} + ' kr.'"></td>
             </tr>
             </tbody>
         </table>
