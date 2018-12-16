@@ -49,7 +49,7 @@ public class LoginController {
                         @RequestParam(defaultValue = "") String password,
                         HttpServletRequest request) {
 
-        User user;
+
         HttpSession session = request.getSession();
         if (companyRepo.findByEmail(email) != null) {
             Company c = companyRepo.findByEmail(email);
