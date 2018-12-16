@@ -53,6 +53,11 @@ public class LoginController {
         HttpSession session = request.getSession();
         if (companyRepo.findByEmail(email) != null) {
             Company c = companyRepo.findByEmail(email);
+            System.out.println("IS ACTIVE: " + c.getIsActive());
+            if(c.getIsActive() == 0){
+                error = "Your company has not been verified yet. Please check again later.";
+                return "redirect:/login";
+            }
             if (c.getPassword().equals(password) && c.getEmail() != null) {
                 session.setAttribute("company", c);
                 return "redirect:/company/frontpage";
