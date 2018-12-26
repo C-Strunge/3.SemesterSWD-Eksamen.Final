@@ -46,7 +46,28 @@
                             </li>
                         </ul>
                         <br>
-                        <button type="submit" value="send" class="btn btn-success">Buy</button>
+                        <!-- Show more modal knap -->
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg">
+                            Buy
+                        </button>
+                        <!-- Large modal -->
+                        <!-- Modal til 'Show more' funktion -->
+
+                        <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">Are you sure you want to buy this item?</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <button type="submit" value="send" class="btn btn-success">Buy</button>
+                                    <a th:href="'/customer/offer/view'" class="btn btn-danger">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
                         <br>
                         <small class="text-muted" th:text="'Offer ends on ' + ${offer.endDate}">
                         </small>
