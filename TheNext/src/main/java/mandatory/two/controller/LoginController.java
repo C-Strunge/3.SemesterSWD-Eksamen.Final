@@ -75,9 +75,6 @@ public class LoginController {
                 return "redirect:/admin/verify";
             }
         }
-        //return SessionHelper.loginRedirect(user);
-        //System.out.println("FIRST NAME: " + user.getFirstName());
-        //System.out.println("PASSWORD: " + user.getPassword());
 
         error = "Email or password is invalid";
 

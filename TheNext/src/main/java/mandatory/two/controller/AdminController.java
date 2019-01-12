@@ -14,6 +14,7 @@ import mandatory.two.repository.AdminRepository;
 import mandatory.two.repository.CategoryRepository;
 import mandatory.two.repository.CompanyRepository;
 import mandatory.two.repository.CustomerRepository;
+import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
